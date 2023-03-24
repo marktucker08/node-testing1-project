@@ -8,6 +8,11 @@
  */
 function trimProperties(obj) {
   // ✨ implement
+  const copyObj = {...obj}
+  for(let key in copyObj) {
+    copyObj[key] = copyObj[key].trim();
+}
+  return copyObj;
 }
 
 /**
@@ -20,6 +25,11 @@ function trimProperties(obj) {
  */
 function trimPropertiesMutation(obj) {
   // ✨ implement
+  // const copyObj = {...obj}
+  for(let key in obj) {
+    obj[key] = obj[key].trim();
+}
+  return obj;
 }
 
 /**
