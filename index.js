@@ -186,10 +186,11 @@ class Car {
       return this.odometer
     }
     if (distance > this.currentTank * this.mpg) {
-      let ranOut = Math.floor(distance - (this.currentTank * this.mpg))
+      let milesDriven = this.currentTank * this.mpg
+      let ranOut = Math.floor(distance - (milesDriven))
       this.currentTank = 0
       console.log(`ran out of gas after ${ranOut} miles`)
-      this.odometer = this.odometer + ranOut
+      this.odometer = this.odometer + milesDriven
       return this.odometer;
     }
     this.odometer = this.odometer + distance
@@ -213,13 +214,17 @@ class Car {
     // ✨ implement
     if (this.currentTank + gallons > this.tank) {
       this.currentTank = this.tank
+      console.log('tank is full')
       return this.currentTank * this.mpg;
     }
     this.currentTank = this.currentTank + gallons
     return this.currentTank * this.mpg;
   }
 }
-// const focus = new Car('focus', 20, 30)
+const focus = new Car('focus', 20, 30)
+
+console.log(focus.drive(90))
+console.log(focus.currentTank)
 //    focus.drive(100) // returns 100
 //    focus.drive(100) // returns 200
 //    focus.drive(100) // returns 300
