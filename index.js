@@ -142,10 +142,10 @@ class Seasons {
   }
 }
 
-const seasons = new Seasons()
-console.log(seasons.next())
-console.log(seasons.next())
-console.log(seasons.next())
+// const seasons = new Seasons()
+// console.log(seasons.next())
+// console.log(seasons.next())
+// console.log(seasons.next())
 
 
 class Car {
@@ -158,6 +158,9 @@ class Car {
   constructor(name, tankSize, mpg) {
     this.odometer = 0 // car initilizes with zero miles
     this.tank = tankSize // car initiazes full of gas
+    this.name = name
+    this.mpg = mpg
+    this.currentTank = tankSize
     // ✨ initialize whatever other properties are needed
   }
 
@@ -176,6 +179,21 @@ class Car {
    */
   drive(distance) {
     // ✨ implement
+    if (this.currentTank === 0) {
+      console.log('out of gas')
+      return this.odometer
+    }
+    if (distance > this.currentTank * this.mpg) {
+      let ranOut = Math.floor(distance - (this.currentTank * this.mpg))
+      this.currentTank = 0
+      console.log(`ran out of gas after ${ranOut} miles`)
+      this.odometer = this.odometer + ranOut
+      return this.odometer;
+    }
+    this.odometer = this.odometer + distance
+    const gasUsed = distance / this.mpg
+    this.currentTank = this.currentTank - gasUsed;
+    return this.odometer;
   }
 
   /**
@@ -191,8 +209,26 @@ class Car {
    */
   refuel(gallons) {
     // ✨ implement
+    if (gallons > this.tank) {
+      this.currentTank = this.tank
+      return this.currentTank * this.mpg;
+    }
+    this.currentTank = this.currentTank + gallons
+    return this.currentTank * this.mpg;
   }
 }
+// const focus = new Car('focus', 20, 30)
+//    focus.drive(100) // returns 100
+//    focus.drive(100) // returns 200
+//    focus.drive(100) // returns 300
+//    focus.drive(200) // returns 500
+//    focus.drive(200) // returns 500
+// console.log(focus.odometer)
+//   focus.drive(100)
+//   console.log(focus.refuel(14))
+//   console.log(focus.drive(100))
+  
+
 
 /**
  * [Exercise 7] Asynchronously resolves whether a number is even
@@ -209,6 +245,11 @@ class Car {
  */
 function isEvenNumberAsync(number) {
   // ✨ implement
+  if (number % 2 === 0) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 module.exports = {
