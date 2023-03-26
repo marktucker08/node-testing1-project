@@ -86,10 +86,12 @@ class Counter {
     }
   }
 }
-let counter = new Counter(3)
-counter.countDown()
-counter.countDown()
-console.log(counter.count)
+// let counter = new Counter(3)
+// console.log(counter.countDown())
+// console.log(counter.countDown())
+// console.log(counter.countDown())
+// console.log(counter.countDown())
+// console.log(counter.countDown())
 
 class Seasons {
   /**
@@ -97,6 +99,9 @@ class Seasons {
    */
   constructor() {
     // ✨ initialize whatever properties are needed
+    this.initialSeason = 'summer'
+    this.season = ''
+    this.nextSeason = ''
   }
 
   /**
@@ -113,8 +118,35 @@ class Seasons {
    */
   next() {
     // ✨ implement
+    if (!this.season) {
+      this.nextSeason = 'fall'
+      this.season = 'summer'
+      return this.initialSeason;
+    } else if (this.nextSeason === 'fall') {
+      this.season = 'fall'
+      this.nextSeason = 'winter'
+      return this.season;
+    } else if (this.nextSeason === 'winter') {
+      this.season = 'winter'
+      this.nextSeason = 'spring'
+      return this.season;
+    } else if (this.nextSeason === 'spring') {
+      this.season = 'spring'
+      this.nextSeason = 'summer'
+      return this.season;
+    } else if (this.nextSeason === 'summer') {
+      this.season = 'summer'
+      this.nextSeason = 'fall'
+      return this.season;
+    }
   }
 }
+
+const seasons = new Seasons()
+console.log(seasons.next())
+console.log(seasons.next())
+console.log(seasons.next())
+
 
 class Car {
   /**

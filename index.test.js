@@ -58,7 +58,16 @@ describe('[Exercise 4] Counter', () => {
 
     expect(actual).toEqual(expected)
   })
-  // test('[8] the count eventually reaches zero but does not go below zero', () => {})
+  test('[8] the count eventually reaches zero but does not go below zero', () => {
+    const expected = 0
+    let actual = counter.countDown()
+    actual =  counter.countDown()
+    actual =  counter.countDown()
+    actual =  counter.countDown()
+    actual =  counter.countDown()
+    expect(actual).toEqual(expected)
+    expect(actual).toBeGreaterThan(-1)
+  })
 })
 
 describe('[Exercise 5] Seasons', () => {
@@ -66,12 +75,50 @@ describe('[Exercise 5] Seasons', () => {
   beforeEach(() => {
     seasons = new utils.Seasons() // each test must start with fresh seasons
   })
-  // test('[9] the FIRST call of seasons.next returns "summer"', () => {})
-  // test('[10] the SECOND call of seasons.next returns "fall"', () => {})
-  // test('[11] the THIRD call of seasons.next returns "winter"', () => {})
-  // test('[12] the FOURTH call of seasons.next returns "spring"', () => {})
-  // test('[13] the FIFTH call of seasons.next returns again "summer"', () => {})
-  // test('[14] the 40th call of seasons.next returns "spring"', () => {})
+  test('[9] the FIRST call of seasons.next returns "summer"', () => {
+    const initialSeason = 'summer'
+    const actual = seasons.next()
+    expect(actual).toEqual(initialSeason);
+  })
+  test('[10] the SECOND call of seasons.next returns "fall"', () => {
+    const expected = 'fall'
+    let actual = seasons.next()
+    actual = seasons.next() //second call
+    expect(actual).toEqual(expected);
+  })
+  test('[11] the THIRD call of seasons.next returns "winter"', () => {
+    const expected = 'winter'
+    let actual = seasons.next()
+    actual = seasons.next() //second call
+    actual = seasons.next() //third call
+    expect(actual).toEqual(expected);
+  })
+  test('[12] the FOURTH call of seasons.next returns "spring"', () => {
+    const expected = 'spring'
+    let actual = seasons.next()
+    actual = seasons.next() //second call
+    actual = seasons.next() //third call
+    actual = seasons.next() //4th call
+    expect(actual).toEqual(expected);
+  })
+  test('[13] the FIFTH call of seasons.next returns again "summer"', () => {
+    const expected = 'summer'
+    let actual = seasons.next()
+    actual = seasons.next() //second call
+    actual = seasons.next() //third call
+    actual = seasons.next() //4th call
+    actual = seasons.next() //5th call
+    expect(actual).toEqual(expected);
+  })
+  test('[14] the 40th call of seasons.next returns "spring"', () => {
+    const expected = 'spring'
+
+      for (let i = 1; i <= 40; i++) {
+      seasons.next()
+      } 
+    let actual = seasons.season;
+    expect(actual).toEqual(expected);
+  })
 })
 
 describe('[Exercise 6] Car', () => {
