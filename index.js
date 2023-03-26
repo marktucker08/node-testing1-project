@@ -42,6 +42,11 @@ function trimPropertiesMutation(obj) {
  */
 function findLargestInteger(integers) {
   // ✨ implement
+  const max = integers.reduce((max, obj) => {
+    return obj.integer > max.integer ? obj : max;
+  })
+  console.log(max)
+  return Object.values(max)
 }
 
 class Counter {
@@ -51,7 +56,10 @@ class Counter {
    */
   constructor(initialNumber) {
     // ✨ initialize whatever properties are needed
-  }
+      this.initialNumber = initialNumber;
+      this.count = initialNumber + 1;
+    }
+    
 
   /**
    * [Exercise 4B] Counter.prototype.countDown counts down to zero
@@ -67,8 +75,21 @@ class Counter {
    */
   countDown() {
     // ✨ implement
+    this.count--
+    if (this.count === this.initialNumber) {
+      return this.initialNumber
+    } else {
+      if (this.count <= 0) {
+        return 0
+      }
+      return this.count
+    }
   }
 }
+let counter = new Counter(3)
+counter.countDown()
+counter.countDown()
+console.log(counter.count)
 
 class Seasons {
   /**
