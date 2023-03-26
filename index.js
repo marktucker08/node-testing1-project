@@ -42,11 +42,13 @@ function trimPropertiesMutation(obj) {
  */
 function findLargestInteger(integers) {
   // ✨ implement
-  const max = integers.reduce((max, obj) => {
-    return obj.integer > max.integer ? obj : max;
-  })
-  console.log(max)
-  return Object.values(max)
+  let max = integers[0].integer
+  for (let idx = 1; idx < integers.length; idx++) {
+    if (integers[idx].integer > max) {
+      max = integers[idx].integer;
+    }
+  }
+  return max
 }
 
 class Counter {
@@ -209,7 +211,7 @@ class Car {
    */
   refuel(gallons) {
     // ✨ implement
-    if (gallons > this.tank) {
+    if (this.currentTank + gallons > this.tank) {
       this.currentTank = this.tank
       return this.currentTank * this.mpg;
     }
